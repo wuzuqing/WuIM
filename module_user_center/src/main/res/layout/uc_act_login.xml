@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:hint="请输入账号"
-            android:text="1380000001"
+            android:text="13800000001"
             app:cet_delete_icon="@mipmap/ic_launcher"
             app:cet_left_icon="@mipmap/ic_launcher"
             app:cet_style="phone" />

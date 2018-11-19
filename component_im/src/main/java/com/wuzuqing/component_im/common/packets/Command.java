@@ -507,6 +507,10 @@ public enum Command {
         return value;
     }
 
+    public final byte[] getBytes(){
+      return  String.format("%03d", value).getBytes();
+    }
+
     public static Command valueOf(int value) {
         return forNumber(value);
     }

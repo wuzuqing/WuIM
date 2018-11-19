@@ -46,13 +46,15 @@ class GroupListActivity : BaseVcListActivity<GroupBean>() {
             mAdapter!!.setNewData(list)
         } else {
             ModelService.getRemoteData(true, this, ApiService::class.java,
-                    ModelService.MethodSelect<List<GroupBean>, ApiService> { service -> service.getGroupList(GlobalVariable.get().userId) },
-                    INetCallback<List<GroupBean>> {
-                        mAdapter!!.setNewData(it)
-                        HandlerManager.async(Runnable {
-                            DbCore.getDaoSession().groupBeanDao.deleteAll()
-                            DbCore.getDaoSession().groupBeanDao.insertOrReplaceInTx(it)
-                        })
+                    { service -> service.getGroupList(GlobalVariable.get().userId) },
+                    {
+                        if (it!=null && it.isNotEmpty()){
+                            mAdapter!!.setNewData(it)
+                            HandlerManager.async(Runnable {
+                                DbCore.getDaoSession().groupBeanDao.deleteAll()
+                                DbCore.getDaoSession().groupBeanDao.insertOrReplaceInTx(it)
+                            })
+                        }
                     })
         }
 

@@ -17,6 +17,7 @@ import com.wuzuqing.component_base.util.SPUtils;
 import com.wuzuqing.component_base.util.notifyutil.NotifyUtil;
 import com.wuzuqing.component_data.bean.UserInfoBean;
 import com.wuzuqing.component_data.cache.GlobalVariable;
+import com.wuzuqing.component_data.constant.BaseHost;
 import com.wuzuqing.component_data.d_arouter.RxTag;
 import com.wuzuqing.component_im.R;
 import com.wuzuqing.component_im.bean.ContactsBean;
@@ -81,8 +82,8 @@ public class TcpManager {
 
 
     public void init() {
-        init("192.168.1.239", 9091);
-//        init(BaseHost.BASE_IP, 9091);
+//        init("192.168.1.239", 9091);
+        init(BaseHost.BASE_IP, 13212);
         List<ChatBody> list = DbCore.getDaoSession().getChatBodyDao().queryBuilder()
                 .orderDesc(ChatBodyDao.Properties.CreateTime).limit(1).list();
         if (list != null && list.size() > 0) {
