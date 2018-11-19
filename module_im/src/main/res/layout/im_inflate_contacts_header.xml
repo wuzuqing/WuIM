@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="12dp">
+
+    <TextView
+        android:id="@+id/im_inflate_contacts_header_new_friend"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="8dp"
+        android:drawableStart="@mipmap/ic_launcher"
+        android:gravity="center_vertical"
+        android:text="新的朋友" />
+
+    <View style="@style/HorizontalLineStyle" />
+
+    <TextView
+        android:id="@+id/im_inflate_contacts_header_group"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="8dp"
+        android:drawableStart="@mipmap/ic_launcher"
+        android:gravity="center_vertical"
+        android:text="群聊" />
+
+    <View style="@style/HorizontalLineStyle" />
+
+    <TextView
+        android:id="@+id/im_inflate_contacts_header_tag"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="8dp"
+        android:drawableStart="@mipmap/ic_launcher"
+        android:gravity="center_vertical"
+        android:text="标签" />
+
+
+</LinearLayout>

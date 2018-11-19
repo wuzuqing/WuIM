@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="4dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/im_item_chat_time"
+        style="@style/IMChatTime" />
+
+    <ImageView
+        android:id="@+id/im_item_chat_avatar"
+        style="@style/IMChatAvatar"
+        android:layout_alignParentRight="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/im_item_chat_avatar"
+        android:layout_marginStart="52dp"
+        android:layout_toLeftOf="@+id/im_item_chat_avatar"
+
+        >
+
+        <TextView
+            android:id="@+id/im_item_chat_nick"
+            style="@style/IMChatNick"
+            android:layout_alignParentRight="true" />
+
+
+        <ImageView
+            android:id="@+id/im_item_chat_voice"
+            style="@style/IMChatVoice"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/im_item_chat_nick"
+            android:background="@drawable/im_item_chat_from_bg"
+            android:paddingEnd="12dp"
+            android:paddingLeft="12dp"
+            android:src="@drawable/im_ease_chatto_voice_playing_f" />
+
+        <TextView
+            android:id="@+id/im_item_chat_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:layout_toStartOf="@+id/im_item_chat_voice"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/im_selector_listen_red"
+            android:gravity="center"
+            android:textColor="@color/color66"
+            android:textSize="13sp" />
+    </RelativeLayout>
+</RelativeLayout>

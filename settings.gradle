@@ -1,0 +1,5 @@
+include ':app'
+include  ':component_base',  ':component_data',  ':component_pay',  ':component_im', ':component_album'
+//include 'module_shop_cart','module_shop_mall'
+include ':module_im',':module_user_center'
+include   ':baseLib:alertview', ':baseLib:videocompressV2', ':baseLib:kprogresshud', ':baseLib:flowlayout-lib', ':module_common_ui', ':baseLib:jcameraview'

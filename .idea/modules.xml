@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/WuIM.iml" filepath="$PROJECT_DIR$/WuIM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baseLib/alertview/alertview.iml" filepath="$PROJECT_DIR$/baseLib/alertview/alertview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baseLib/baseLib.iml" filepath="$PROJECT_DIR$/baseLib/baseLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component_album/component_album.iml" filepath="$PROJECT_DIR$/component_album/component_album.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component_base/component_base.iml" filepath="$PROJECT_DIR$/component_base/component_base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component_data/component_data.iml" filepath="$PROJECT_DIR$/component_data/component_data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component_im/component_im.iml" filepath="$PROJECT_DIR$/component_im/component_im.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component_pay/component_pay.iml" filepath="$PROJECT_DIR$/component_pay/component_pay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baseLib/flowlayout-lib/flowlayout-lib.iml" filepath="$PROJECT_DIR$/baseLib/flowlayout-lib/flowlayout-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baseLib/jcameraview/jcameraview.iml" filepath="$PROJECT_DIR$/baseLib/jcameraview/jcameraview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baseLib/kprogresshud/kprogresshud.iml" filepath="$PROJECT_DIR$/baseLib/kprogresshud/kprogresshud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_common_ui/module_common_ui.iml" filepath="$PROJECT_DIR$/module_common_ui/module_common_ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_im/module_im.iml" filepath="$PROJECT_DIR$/module_im/module_im.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_user_center/module_user_center.iml" filepath="$PROJECT_DIR$/module_user_center/module_user_center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baseLib/videocompressV2/videocompressV2.iml" filepath="$PROJECT_DIR$/baseLib/videocompressV2/videocompressV2.iml" />
+    </modules>
+  </component>
+</project>

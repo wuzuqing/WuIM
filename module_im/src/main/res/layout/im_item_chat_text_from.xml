@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:paddingBottom="4dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/im_item_chat_time"
+        style="@style/IMChatTime"
+        />
+
+    <ImageView
+        android:id="@+id/im_item_chat_avatar"
+        style="@style/IMChatAvatar"
+        android:layout_alignParentRight="true"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/im_item_chat_avatar"
+        android:layout_marginStart="52dp"
+        android:gravity="right"
+        android:layout_toLeftOf="@+id/im_item_chat_avatar"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/im_item_chat_nick"
+            style="@style/IMChatNick"
+            />
+
+        <TextView
+            android:id="@+id/im_item_chat_content"
+            android:background="@drawable/im_item_chat_from_bg"
+            style="@style/IMChatContent"
+            />
+    </LinearLayout>
+</RelativeLayout>

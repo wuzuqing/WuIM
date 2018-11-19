@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.wuzuqing.component_base.widget.NormalTitleBar
+        android:id="@+id/im_act_chat_ntb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ntb_tv_left="showAndFinish" />
+
+    <FrameLayout
+        android:id="@+id/im_act_chat_input_panel_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:id="@+id/im_act_chat_input_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="bottom"
+            android:minHeight="48dp"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:id="@+id/im_act_chat_iv_recorder"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:src="@mipmap/ic_cheat_voice" />
+
+            <Button
+                android:id="@+id/im_act_chat_btn_recorder"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:background="@drawable/im_selector_recorder_bg"
+                android:gravity="center"
+                android:paddingEnd="12dp"
+                android:text="按住 说话"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/im_act_chat_et_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/im_item_chat_input_bg"
+                android:maxLines="4"
+                android:paddingBottom="4dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="12dp"
+                android:paddingTop="4dp" />
+
+            <ImageView
+                android:id="@+id/im_act_chat_iv_face"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:src="@mipmap/ic_cheat_emo" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp">
+
+                <ImageView
+                    android:id="@+id/im_act_chat_btn_img"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@mipmap/ic_cheat_add" />
+
+                <TextView
+                    android:id="@+id/im_act_chat_btn_send"
+                    android:layout_width="44dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/im_selector_recorder_bg"
+                    android:gravity="center"
+                    android:text="发送"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/im_act_chat_bottom_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <View
+        android:id="@+id/im_act_chat_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/im_act_chat_input_panel_container"
+        android:background="#afafaf" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/im_act_chat_srf"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/im_act_chat_input_panel_container"
+        android:layout_below="@+id/im_act_chat_ntb"
+        android:background="@color/windowBackgroundColor">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/im_act_chat_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <wuzuqing.com.module_im.widget.voiceview.VoiceRecorderView
+        android:id="@+id/im_act_chat_vrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
+</RelativeLayout>

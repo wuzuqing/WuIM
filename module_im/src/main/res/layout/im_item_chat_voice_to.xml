@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="4dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/im_item_chat_time"
+        style="@style/IMChatTime" />
+
+    <ImageView
+        android:id="@+id/im_item_chat_avatar"
+        style="@style/IMChatAvatar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/im_item_chat_avatar"
+        android:layout_marginEnd="52dp"
+        android:layout_toRightOf="@+id/im_item_chat_avatar"
+
+        >
+
+        <TextView
+            android:id="@+id/im_item_chat_nick"
+            style="@style/IMChatNick" />
+
+
+        <ImageView
+            android:id="@+id/im_item_chat_voice"
+            style="@style/IMChatVoice"
+            android:layout_below="@+id/im_item_chat_nick"
+            android:background="@drawable/im_item_chat_to_bg"
+            android:paddingEnd="12dp"
+            android:paddingLeft="12dp"
+            android:src="@drawable/im_ease_chatto_voice_playing_t" />
+
+        <TextView
+            android:id="@+id/im_item_chat_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@+id/im_item_chat_voice"
+            android:drawableEnd="@drawable/im_selector_listen_red"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/color66"
+            android:textSize="13sp" />
+    </RelativeLayout>
+</RelativeLayout>

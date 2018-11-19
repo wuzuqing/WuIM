@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp"
+    android:background="@color/white"
+    android:paddingBottom="8dp">
+
+
+    <ImageView
+        android:id="@+id/im_item_conversation_iv_avatar"
+        android:layout_width="@dimen/im_chat_img_size"
+        android:layout_height="@dimen/im_chat_img_size"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        />
+
+    <com.wuzuqing.component_base.widget.BadgeView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/im_item_conversation_badge"
+        android:layout_alignRight="@+id/im_item_conversation_iv_avatar"
+        android:layout_alignTop="@+id/im_item_conversation_iv_avatar"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginTop="-4dp" />
+
+    <TextView
+        android:id="@+id/im_item_conversation_tv_nick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/im_item_conversation_iv_avatar"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/im_item_conversation_iv_avatar"
+        android:textColor="@color/color33"
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:id="@+id/im_item_conversation_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/im_item_conversation_tv_nick"
+        android:layout_marginEnd="12dp"
+        android:text="11:01"
+        android:textColor="@color/color66"
+        android:textSize="11sp" />
+
+
+    <ImageView
+        android:id="@+id/im_item_conversation_iv_disturb"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignBottom="@+id/im_item_conversation_iv_avatar"
+        android:layout_alignEnd="@+id/im_item_conversation_tv_time"
+        android:layout_marginBottom="2dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/im_item_conversation_tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/im_item_conversation_iv_avatar"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/im_item_conversation_iv_avatar"
+        android:layout_toStartOf="@+id/im_item_conversation_iv_disturb"
+        android:maxLines="1"
+        android:textColor="@color/color33"
+        android:textSize="12sp" />
+
+
+</RelativeLayout>

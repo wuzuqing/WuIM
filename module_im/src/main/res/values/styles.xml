@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="IMChatContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">@dimen/im_chat_img_size</item>
+        <item name="android:textColor">@color/color33</item>
+    </style>
+
+
+    <style name="IMChatNick">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color66</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+
+    <style name="IMChatAvatar">
+        <item name="android:layout_width">@dimen/im_chat_img_size</item>
+        <item name="android:layout_height">@dimen/im_chat_img_size</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+    <style name="IMChatTime">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:background">@drawable/im_item_chat_time_bg</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+<!--
+
+-->
+    <style name="IMChatImg">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:maxWidth">120dp</item>
+        <item name="android:maxHeight">160dp</item>
+    </style>
+
+    <style name="IMChatVoice">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+</resources>

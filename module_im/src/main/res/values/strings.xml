@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <string name="im_Is_download_voice_click_later">正在下载语音,请稍后点击</string>
+    <string name="im_Recording_without_permission">没有录音权限</string>
+    <string name="im_Send_voice_need_sdcard_support">没有SD卡权限</string>
+    <string name="im_The_recording_time_is_too_short">录制时间太短</string>
+    <string name="im_attach_file" tools:keep="@string/attach_file">File</string>
+    <string name="im_recoding_fail">录音失败，请再试一次！</string>
+    <string name="im_move_up_to_cancel">手指上滑,取消发送</string>
+    <string name="im_release_to_cancel">松开手指,取消发送</string>
+</resources>

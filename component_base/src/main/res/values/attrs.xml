@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NormalTitleBar">
+        <attr name="ntb_bg" format="reference"/>
+        <attr name="ntb_right_img1" format="reference" />
+        <attr name="ntb_right_img2" format="reference" />
+        <attr name="ntb_right_img3" format="reference" />
+        <attr name="ntb_right_text" format="string" />
+        <attr name="ntb_title_text" format="string" />
+        <attr name="ntb_right_text_color" format="color" />
+        <attr name="ntb_right_text_size" format="float" />
+        <attr name="ntb_right_img_size" format="dimension" />
+        <attr name="ntb_img_padding" format="dimension" />
+        <attr name="ntb_tv_left" format="enum" >
+            <enum name="show" value="0" />
+            <enum name="showAndFinish" value="1" />
+        </attr>
+        <attr name="ntb_bg_style" format="enum" >
+            <enum name="white" value="0" />
+            <enum name="black" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="MultiTextView">
+        <attr name="mtv_paddingLeft" format="dimension" />
+        <attr name="mtv_paddingTop" format="dimension" />
+        <attr name="mtv_paddingRight" format="dimension" />
+        <attr name="mtv_paddingBottom" format="dimension" />
+        <attr name="mtv_textSize" format="dimension" />
+        <attr name="mtv_textColor" format="color" />
+        <attr name="mtv_anchorColor" format="color" />
+        <attr name="mtv_nameColor" format="color" />
+        <attr name="mtv_systemColor" format="color" />
+        <attr name="mtv_text" format="string" />
+        <attr name="mtv_lineSpacing" format="integer" />
+        <attr name="mtv_maxLine" format="integer" />
+        <attr name="mtv_ellipsis" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="CustomEditText">
+        <attr name="cet_left_icon" format="reference" />
+        <attr name="cet_delete_icon" format="reference" />
+        <attr name="cet_show_pwd_icon" format="reference" />
+        <attr name="cet_hide_pwd_icon" format="reference" />
+        <attr name="cet_style" format="enum" >
+            <enum name="normal" value="0" />
+            <enum name="password" value="1" />
+            <enum name="phone" value="2" />
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="BadgeView">
+        <attr name="bdv_padding" format="dimension" />
+        <attr name="bdv_small_size" format="dimension" />
+        <attr name="bdv_num_text_size" format="float" />
+        <attr name="bdv_num_text" format="string" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ProgressTextView">
+        <attr name="ptv_text_size" format="float" />
+        <attr name="ptv_text_color" format="color" />
+        <attr name="ptv_finish_color" format="color" />
+        <attr name="ptv_unFinish_color" format="color" />
+    </declare-styleable>
+</resources>

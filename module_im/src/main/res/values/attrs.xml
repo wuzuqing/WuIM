@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ImRoundRectImageView">
+        <attr name="im_riv_aspect_style" format="enum">
+            <enum name="im_ver" value="0" />
+            <enum name="im_hor" value="1" />
+        </attr>
+        <attr name="im_riv_radius" format="integer" />
+        <attr name="im_riv_radio" format="float" />
+    </declare-styleable>
+</resources>

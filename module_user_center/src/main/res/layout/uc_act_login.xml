@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eac">
+
+    <LinearLayout
+        android:id="@+id/ll_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/alert_bg"
+        android:orientation="vertical">
+
+        <com.wuzuqing.component_base.widget.CustomEditText
+            android:id="@+id/uc_act_et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="请输入账号"
+            android:text="1380000001"
+            app:cet_delete_icon="@mipmap/ic_launcher"
+            app:cet_left_icon="@mipmap/ic_launcher"
+            app:cet_style="phone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:background="#afafaf" />
+
+        <com.wuzuqing.component_base.widget.CustomEditText
+            android:id="@+id/uc_act_et_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="123456"
+            android:hint="请输入密码"
+            app:cet_delete_icon="@mipmap/ic_launcher"
+            app:cet_hide_pwd_icon="@mipmap/ic_launcher"
+            app:cet_left_icon="@mipmap/ic_launcher"
+            app:cet_show_pwd_icon="@mipmap/ic_launcher"
+            app:cet_style="password" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/uc_act_btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_input"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:text="登录" />
+
+    <TextView
+        android:id="@+id/uc_act_tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/uc_act_btn_login"
+        android:padding="12dp"
+
+        android:text="注册" />
+
+    <TextView
+        android:id="@+id/uc_act_tv_change_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/uc_act_btn_login"
+        android:padding="12dp"
+        android:text="忘记密码" />
+</RelativeLayout>
