@@ -149,6 +149,7 @@ class ChatActivity : BaseVcListActivity<ChatBody>() {
 
     override fun loadListData(rlRefreshLayout: SmartRefreshLayout?, page: Int, pageSize: Int) {
         if (isPrivate) {
+            LogUtils.d("loadListData:${TcpManager.get().sessionId}")
             loadFromDb(ChatBodyDao.Properties.SessionId.eq(TcpManager.get().sessionId), page, pageSize)
         } else {
             loadFromDb(ChatBodyDao.Properties.Group_id.eq(groupId), page, pageSize)

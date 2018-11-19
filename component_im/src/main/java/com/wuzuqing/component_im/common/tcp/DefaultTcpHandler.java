@@ -1,7 +1,6 @@
 package com.wuzuqing.component_im.common.tcp;
 
 
-import com.wuzuqing.component_base.util.LogUtils;
 import com.wuzuqing.component_im.common.base.ImPacket;
 import com.wuzuqing.component_im.common.base.ImStatus;
 import com.wuzuqing.component_im.common.exception.AioDecodeException;
@@ -10,7 +9,6 @@ import com.wuzuqing.component_im.common.packets.Command;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.Arrays;
 
 /**
  * 默认的编码解码器，对接jim-server-demo
@@ -42,7 +40,6 @@ public class DefaultTcpHandler implements ImHandler {
         if (packet.getCommand() != null) {
             cmdBytes = packet.getCommand().getNumber();
         }
-        LogUtils.d("cmdByte:" + cmdBytes);
         packet.setVersion(version);
         packet.setMask(maskByte);
         //bytebuffer的总长度是 = 1byte协议版本号+1byte消息标志位+4byte同步序列号(如果是同步发送则都4byte同步序列号,否则无4byte序列号)+4byte命令码+4byte消息的长度+消息体

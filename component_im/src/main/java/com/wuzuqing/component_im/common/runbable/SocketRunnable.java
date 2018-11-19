@@ -2,6 +2,7 @@ package com.wuzuqing.component_im.common.runbable;
 
 import android.util.Log;
 
+import com.wuzuqing.component_base.util.LogUtils;
 import com.wuzuqing.component_im.client.intel.AimMessageListener;
 import com.wuzuqing.component_im.common.base.AimConfig;
 import com.wuzuqing.component_im.common.base.ImPacket;
@@ -69,7 +70,7 @@ public class SocketRunnable implements Runnable {
                         newByteBuffer = ByteBufferUtils.composite(newByteBuffer, buff, len);
                     } else {
                         if (listener != null) {
-                            // System.out.println("解析完："+new String(packet.getBody(),"utf-8"));
+                             System.out.println("解析完："+new String(packet.getBody(),"utf-8"));
                             listener.onReceiver(packet);
                         }
                     }
@@ -77,7 +78,8 @@ public class SocketRunnable implements Runnable {
                 }
             }
         } catch (IOException | AioDecodeException | LengthOverflowException e) {
-//            LogUtils.e(e.getMessage());
+            e.printStackTrace();
+            LogUtils.e(e.getMessage());
             if (isLive)
                 close();
         }

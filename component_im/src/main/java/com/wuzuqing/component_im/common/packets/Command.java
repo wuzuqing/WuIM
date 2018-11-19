@@ -192,6 +192,24 @@ public enum Command {
      */
     COMMAND_LIVE_CLOSE(5),
 
+//    /**
+//     * <pre>
+//     * 聊天请求
+//     *  {"cmd":"002","code":250,"data":{"content":"喜欢你，宝宝","headimage":"","lv":1,"platform":"IOS","roomid":23334,"sendernickname":"走开、暧昧","whid":2227},"whid":2227}
+//     * </pre>
+//     * <code>COMMAND_CHAT_REQ = 11;</code>
+//     */
+//    COMMAND_CHAT_REQ(2),
+//    /**
+//     * <pre>
+//     * 消息返回
+//     * {"cmd":"012","code":252,"data":null,"msg":"发言不能太快"}
+//     * </pre>
+//     *
+//     * <code>COMMAND_CHAT_RESP = 12;</code>
+//     */
+//    COMMAND_CHAT_RESP(12),
+
     /**
      * <pre>
      * 聊天请求
@@ -199,7 +217,7 @@ public enum Command {
      * </pre>
      * <code>COMMAND_CHAT_REQ = 11;</code>
      */
-    COMMAND_CHAT_REQ(2),
+    COMMAND_CHAT_REQ(973),
     /**
      * <pre>
      * 消息返回
@@ -208,9 +226,7 @@ public enum Command {
      *
      * <code>COMMAND_CHAT_RESP = 12;</code>
      */
-    COMMAND_CHAT_RESP(12),
-
-
+    COMMAND_CHAT_RESP(972),
     /**
      * <pre>
      * 开奖
@@ -540,8 +556,10 @@ public enum Command {
             case 990:
                 return COMMAND_EXIT_GROUP_NOTIFY_RESP;
             case 2:
+            case 973:
                 return COMMAND_CHAT_REQ;
             case 12:
+            case 972:
                 return COMMAND_CHAT_RESP;
             case 213:
                 return COMMAND_HEARTBEAT_REQ;

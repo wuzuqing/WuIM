@@ -17,7 +17,6 @@ import com.wuzuqing.component_base.util.SPUtils;
 import com.wuzuqing.component_base.util.notifyutil.NotifyUtil;
 import com.wuzuqing.component_data.bean.UserInfoBean;
 import com.wuzuqing.component_data.cache.GlobalVariable;
-import com.wuzuqing.component_data.constant.BaseHost;
 import com.wuzuqing.component_data.d_arouter.RxTag;
 import com.wuzuqing.component_im.R;
 import com.wuzuqing.component_im.bean.ContactsBean;
@@ -55,10 +54,10 @@ import java.util.Map;
 
 public class TcpManager {
 
-    private static final int WHAT_HEART = 99;
-    private static final int WHAT_CHAT_CMD = 11;
-    private static final int WHAT_USER_INFO_CMD = 6;
-    private static final int WHAT_OFFLINE_MESSAGE_CMD = 22;
+    private static final int WHAT_HEART = 213;
+    private static final int WHAT_CHAT_CMD = 973;
+    private static final int WHAT_USER_INFO_CMD = 994;
+    private static final int WHAT_OFFLINE_MESSAGE_CMD = 981;
 
     private static TcpManager tcpManager = new TcpManager();
     private AimClient client = AimClient.getInstance();
@@ -82,8 +81,8 @@ public class TcpManager {
 
 
     public void init() {
-//        init("192.168.1.189", 13212);
-        init(BaseHost.BASE_IP, 13212);
+        init("192.168.0.21", 13212);
+//        init(BaseHost.BASE_IP, 13212);
         List<ChatBody> list = DbCore.getDaoSession().getChatBodyDao().queryBuilder()
                 .orderDesc(ChatBodyDao.Properties.CreateTime).limit(1).list();
         if (list != null && list.size() > 0) {
@@ -124,7 +123,7 @@ public class TcpManager {
             try {
                 JSONObject jObj = new JSONObject(new String(packet.getBody(), "utf-8"));
                 LogUtils.d("onReceiver: " + jObj.toString());
-                int command = jObj.getInt("command");
+                int command = jObj.getInt("cmd");
                 String data = "";
                 if (jObj.has("data")) {
                     data = jObj.getString("data");
@@ -358,7 +357,7 @@ public class TcpManager {
 
     public void setToId(String toId) {
         this.toId = toId;
-        if (!(TextUtils.isEmpty(userId) || TextUtils.isEmpty(toId))) {
+        if (!(TextUtils.isEmpty(userId) && !TextUtils.isEmpty(toId))) {
             sessionId = ChatKit.sessionId(userId, toId);
         }
     }
