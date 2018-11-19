@@ -82,7 +82,7 @@ public class TcpManager {
 
 
     public void init() {
-//        init("192.168.1.239", 9091);
+//        init("192.168.1.189", 13212);
         init(BaseHost.BASE_IP, 13212);
         List<ChatBody> list = DbCore.getDaoSession().getChatBodyDao().queryBuilder()
                 .orderDesc(ChatBodyDao.Properties.CreateTime).limit(1).list();
@@ -153,6 +153,7 @@ public class TcpManager {
                         ChatBody msgBean = JsonKit.toBean(data, ChatBody.class);
                         doChat(command, msgBean, true);
                         break;
+                        default:
                 }
             } catch (Exception e) {
                 e.printStackTrace();
