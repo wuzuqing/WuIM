@@ -5,8 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/title_black</item>
         <item name="colorPrimaryDark">@color/title_black</item>
-        <item name="colorAccent">@color/title_black</item>
-        <item name="android:listDivider">@color/txt_color</item>
+        <item name="colorAccent">@color/color33</item>
+        <item name="android:listDivider">@color/divider</item>
         <!--窗口的颜色-->
         <item name="android:windowBackground">@color/windowBackgroundColor</item>
 

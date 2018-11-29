@@ -30,6 +30,6 @@
     <color name="account_color_orange_f59">#F59523</color>
     <color name="colorFEFF">#FEFEFF</color>
     <color name="colorE75">#E75353</color>
-    <color name="divider">#e6e6e6</color>
-
+    <color name="divider">#ececec</color>
+    <color name="bottomBarColor">#fcfcfc</color>
 </resources>

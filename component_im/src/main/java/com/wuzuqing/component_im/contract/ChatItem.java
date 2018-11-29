@@ -12,4 +12,7 @@ public interface ChatItem {
 
     int ITEM_TYPE_VIDEO_FROM = 561;
     int ITEM_TYPE_VIDEO_TO = 562;
+
+    int ITEM_TYPE_VIDEO_CALL_FROM = 563;
+    int ITEM_TYPE_VIDEO_CALL_TO = 565;
 }

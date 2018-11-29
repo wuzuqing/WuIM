@@ -1,5 +1,6 @@
 package wuzuqing.com.module_im.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -9,7 +10,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.wuzuqing.component_base.base.mvc.BaseVcListActivity
 import com.wuzuqing.component_base.net.ModelService
-import com.wuzuqing.component_base.net.common_callback.INetCallback
 import com.wuzuqing.component_base.util.LogUtils
 import com.wuzuqing.component_base.util.ObjectUtils
 import com.wuzuqing.component_data.bean.GroupMemberBean
@@ -67,6 +67,7 @@ class ChatActivity : BaseVcListActivity<ChatBody>() {
     private var chatPanelHelper: ChatPanelHelper? = null
 
 
+    @SuppressLint("UseSparseArrays")
     override fun initView() {
         im_act_chat_ntb.setTitleText(name)
         super.rlRefreshLayout = im_act_chat_srf
@@ -88,9 +89,9 @@ class ChatActivity : BaseVcListActivity<ChatBody>() {
 
         if (!isPrivate) {
             ModelService.getRemoteData(false, this, ApiService::class.java,
-                    ModelService.MethodSelect<List<GroupMemberBean>, ApiService> { service ->
+                    { service ->
                         service!!.getGroupMemberList(groupId, GlobalVariable.get().userId)
-                    }, INetCallback<List<GroupMemberBean>> {
+                    }, { it ->
                 val groupMembers = HashMap<Int, GroupMemberBean>()
                 it.forEach {
                     groupMembers[it.uId] = it
@@ -101,7 +102,7 @@ class ChatActivity : BaseVcListActivity<ChatBody>() {
         } else {
             listenMsg()
         }
-        on<ArrayList<AlbumFile>>(RxTag.SEND_ALBUM, Consumer {
+        on<ArrayList<AlbumFile>>(RxTag.SEND_ALBUM, Consumer { it ->
             val images = ArrayList<String>()
             it.forEach {
                 if (it.mediaType == AlbumFile.TYPE_IMAGE) {
@@ -115,13 +116,31 @@ class ChatActivity : BaseVcListActivity<ChatBody>() {
                 TcpManager.get().sendImage(isPrivate, images)
             }
         })
+
+        on<ChatBody>("updateCall", Consumer {
+            val index = find(mAdapter!!.data, it)
+            mAdapter!!.notifyItemRangeChanged(index,2)
+        })
     }
 
+    private fun find(data: MutableList<ChatBody>, chatBody: ChatBody): Int {
+        var index = -1
+        for (i in data.indices.reversed()) {
+            if (chatBody.id == data[i].id) {
+                index = i
+                break
+            }
+        }
+        if (index != -1) {
+            data[index] = chatBody
+        }
+        return index
+    }
 
     //监听收到的消息
     private fun listenMsg() {
         TcpManager.get().setDisposeMessage {
-            //            LogUtils.d(it)
+            LogUtils.d("listenMsg:$it")
             if (GlobalVariable.checkChat(it.from, it.to, it.chatType, groupId, it.group_id, isPrivate)) {
                 mAdapter!!.addData(it)
                 im_act_chat_recycler.scrollToPosition(mAdapter!!.itemCount - 1)
@@ -166,6 +185,7 @@ class ChatActivity : BaseVcListActivity<ChatBody>() {
                 im_act_chat_srf.finishRefresh()
                 im_act_chat_srf.isEnableRefresh = false
             } else {
+                LogUtils.d("list:$list")
                 mAdapter!!.addData(0, list)
                 im_act_chat_srf.finishRefresh(100)
                 if (list.size < pageSize) {
@@ -185,13 +205,13 @@ class ChatActivity : BaseVcListActivity<ChatBody>() {
                 var nowIndex = 0
                 if (ObjectUtils.isNotEmpty(list)) {
                     list.forEachIndexed { index, it ->
-                        if (it._ID == item._ID) {
+                        if (it.id == item.id) {
                             nowIndex = index
                         }
                     }
                 }
                 PreviewActivity.Data.setData(list, nowIndex)
-                TranslationAnimator.Action.startAction(this, PreviewActivity::class.java, view!!,item!!.url)
+                TranslationAnimator.Action.startAction(this, PreviewActivity::class.java, view!!, item.url)
             }
         }
     }
@@ -200,11 +220,11 @@ class ChatActivity : BaseVcListActivity<ChatBody>() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && data != null) {
-            val path = data!!.getStringExtra("path")
+            val path = data.getStringExtra("path")
             if (101 == resultCode) { //图片
                 TcpManager.get().sendImage(isPrivate, Arrays.asList(path))
             } else if (102 == resultCode) {//视频
-                TcpManager.get().sendVideo(isPrivate, path, data!!.getIntExtra("duration", 0))
+                TcpManager.get().sendVideo(isPrivate, path, data.getIntExtra("duration", 0))
             }
         }
     }

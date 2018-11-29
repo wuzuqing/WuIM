@@ -11,6 +11,8 @@ public interface RouterURLS {
 
     String IM_MAIN = "/im/home";
     String IM_CHAT = "/im/chat";
+    String IM_AUDIL_CALL = "/im/audio_call";
+    String IM_VIDEO_CALL = "/im/video_call";
     String IM_GROUP_LIST = "/im/groupList";
     String USER_CENTER_LOGIN = "/user/login";
 

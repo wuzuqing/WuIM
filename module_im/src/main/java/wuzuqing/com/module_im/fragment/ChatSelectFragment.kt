@@ -13,7 +13,9 @@ import com.wuzuqing.component_data.d_arouter.RxTag
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.im_fragment_chat_select.*
+import org.jetbrains.anko.support.v4.startActivity
 import wuzuqing.com.module_im.R
+import wuzuqing.com.module_im.activity.RtcActivity
 
 class ChatSelectFragment : BaseVcFragment() {
 
@@ -32,29 +34,33 @@ class ChatSelectFragment : BaseVcFragment() {
         itemAdapter.addData(getItems(0))
         itemAdapter.setOnItemClickListener { _, _, position ->
             val item = itemAdapter.getItem(position)
-            when(item!!){
-                SelectItems.PHOTO ->{ //相册
+            when (item!!) {
+                SelectItems.PHOTO -> { //相册
 
-            Album.album(context)
-                    .multipleChoice()
-                    .selectCount(9)
-                    .camera(false)
-                    .columnCount(4)
-                    .widget(
-                            Widget.newDarkBuilder(context)
-                                    .title("图片选择")
-                                    .toolBarColor(color)
-                                    .statusBarColor(color)
-                                    .build()
-                    )
-                    .afterFilterVisibility(false)
-                    .onResult {
-                       post(RxTag.SEND_ALBUM,it)
-                    }
-                    .start()
+                    Album.album(context)
+                            .multipleChoice()
+                            .selectCount(9)
+                            .camera(false)
+                            .columnCount(4)
+                            .widget(
+                                    Widget.newDarkBuilder(context)
+                                            .title("图片选择")
+                                            .toolBarColor(color)
+                                            .statusBarColor(color)
+                                            .build()
+                            )
+                            .afterFilterVisibility(false)
+                            .onResult {
+                                post(RxTag.SEND_ALBUM, it)
+                            }
+                            .start()
                 }
-                SelectItems.TAKES ->{//拍摄
+                SelectItems.TAKES -> {//拍摄
                     CameraActivity.startActivity(activity)
+                }
+                SelectItems.MEDIA_CALL -> {//视频
+                    startActivity<RtcActivity>("called" to true)
+//                    RouterCenter.toVideoCall(true)
                 }
             }
         }

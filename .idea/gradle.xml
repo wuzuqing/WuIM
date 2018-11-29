@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/component_data" />
             <option value="$PROJECT_DIR$/component_im" />
             <option value="$PROJECT_DIR$/component_pay" />
+            <option value="$PROJECT_DIR$/component_web_client" />
             <option value="$PROJECT_DIR$/module_common_ui" />
             <option value="$PROJECT_DIR$/module_im" />
             <option value="$PROJECT_DIR$/module_user_center" />

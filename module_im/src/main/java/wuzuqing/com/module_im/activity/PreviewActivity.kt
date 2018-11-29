@@ -57,10 +57,10 @@ class PreviewActivity : BaseVcActivity(), View.OnClickListener {
 
         var models: List<ChatBody>? = null
         var index = 0
-        var autoPlayID = -1L
+        var autoPlayID = ""
         fun reset() {
             index = 0
-            autoPlayID = -1L
+            autoPlayID = ""
         }
 
         fun getItem(): ChatBody {
@@ -75,7 +75,7 @@ class PreviewActivity : BaseVcActivity(), View.OnClickListener {
             this.models = models
             this.index = index
             if (models!![index].msgType == 3) {
-                this.autoPlayID = models[index]._ID
+                this.autoPlayID = models[index].id
             }
         }
     }
@@ -237,9 +237,9 @@ class PreviewActivity : BaseVcActivity(), View.OnClickListener {
                 val videoView = helper.getView<PreviewVideoView>(R.id.im_item_video)
                 ImageLoadUtils.display(videoView.ivCover, url)
                 videoView.model = item
-                if (item._ID == Data.autoPlayID) {
+                if (item.id == Data.autoPlayID) {
                     videoView.startButton.performClick()
-                    Data.autoPlayID = -1
+                    Data.autoPlayID = ""
                 }
             } else {
                 val iv = helper.getView<PhotoImageView>(R.id.im_item_image)

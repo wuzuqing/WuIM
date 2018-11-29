@@ -15,7 +15,7 @@ import com.wuzuqing.component_im.common.packets.ChatBody;
 /** 
  * DAO for table "CHAT_BODY".
 */
-public class ChatBodyDao extends AbstractDao<ChatBody, Long> {
+public class ChatBodyDao extends AbstractDao<ChatBody, String> {
 
     public static final String TABLENAME = "CHAT_BODY";
 
@@ -24,7 +24,7 @@ public class ChatBodyDao extends AbstractDao<ChatBody, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property _ID = new Property(0, Long.class, "_ID", true, "_id");
+        public final static Property Id = new Property(0, String.class, "id", true, "ID");
         public final static Property CreateTime = new Property(1, Long.class, "createTime", false, "CREATE_TIME");
         public final static Property From = new Property(2, String.class, "from", false, "FROM");
         public final static Property To = new Property(3, String.class, "to", false, "TO");
@@ -53,7 +53,7 @@ public class ChatBodyDao extends AbstractDao<ChatBody, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"CHAT_BODY\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY ," + // 0: _ID
+                "\"ID\" TEXT PRIMARY KEY NOT NULL ," + // 0: id
                 "\"CREATE_TIME\" INTEGER," + // 1: createTime
                 "\"FROM\" TEXT," + // 2: from
                 "\"TO\" TEXT," + // 3: to
@@ -79,9 +79,9 @@ public class ChatBodyDao extends AbstractDao<ChatBody, Long> {
     protected final void bindValues(DatabaseStatement stmt, ChatBody entity) {
         stmt.clearBindings();
  
-        Long _ID = entity.get_ID();
-        if (_ID != null) {
-            stmt.bindLong(1, _ID);
+        String id = entity.getId();
+        if (id != null) {
+            stmt.bindString(1, id);
         }
  
         Long createTime = entity.getCreateTime();
@@ -150,9 +150,9 @@ public class ChatBodyDao extends AbstractDao<ChatBody, Long> {
     protected final void bindValues(SQLiteStatement stmt, ChatBody entity) {
         stmt.clearBindings();
  
-        Long _ID = entity.get_ID();
-        if (_ID != null) {
-            stmt.bindLong(1, _ID);
+        String id = entity.getId();
+        if (id != null) {
+            stmt.bindString(1, id);
         }
  
         Long createTime = entity.getCreateTime();
@@ -218,14 +218,14 @@ public class ChatBodyDao extends AbstractDao<ChatBody, Long> {
     }
 
     @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
+    public String readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0);
     }    
 
     @Override
     public ChatBody readEntity(Cursor cursor, int offset) {
         ChatBody entity = new ChatBody( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // _ID
+            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // createTime
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // from
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // to
@@ -245,7 +245,7 @@ public class ChatBodyDao extends AbstractDao<ChatBody, Long> {
      
     @Override
     public void readEntity(Cursor cursor, ChatBody entity, int offset) {
-        entity.set_ID(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setCreateTime(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setFrom(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setTo(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
@@ -262,15 +262,14 @@ public class ChatBodyDao extends AbstractDao<ChatBody, Long> {
      }
     
     @Override
-    protected final Long updateKeyAfterInsert(ChatBody entity, long rowId) {
-        entity.set_ID(rowId);
-        return rowId;
+    protected final String updateKeyAfterInsert(ChatBody entity, long rowId) {
+        return entity.getId();
     }
     
     @Override
-    public Long getKey(ChatBody entity) {
+    public String getKey(ChatBody entity) {
         if(entity != null) {
-            return entity.get_ID();
+            return entity.getId();
         } else {
             return null;
         }
@@ -278,7 +277,7 @@ public class ChatBodyDao extends AbstractDao<ChatBody, Long> {
 
     @Override
     public boolean hasKey(ChatBody entity) {
-        return entity.get_ID() != null;
+        return entity.getId() != null;
     }
 
     @Override

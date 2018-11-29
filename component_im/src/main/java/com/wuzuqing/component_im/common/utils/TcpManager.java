@@ -9,6 +9,7 @@ import com.wuzuqing.component_base.constants.BaseApplication;
 import com.wuzuqing.component_base.luban.Luban;
 import com.wuzuqing.component_base.net.ModelService;
 import com.wuzuqing.component_base.rxbus.RxManager;
+import com.wuzuqing.component_base.rxbus.RxManagerUtil;
 import com.wuzuqing.component_base.util.FileUtils;
 import com.wuzuqing.component_base.util.HandlerManager;
 import com.wuzuqing.component_base.util.LogUtils;
@@ -52,6 +53,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class TcpManager {
 
@@ -64,7 +66,6 @@ public class TcpManager {
     private AimClient client = AimClient.getInstance();
     private String userId;      //当前用户ID
     private String toId;        //私聊对方的ID
-    private static final String TAG = "TcpManager";
     private Handler handler;    //处理消息切换
     private String sessionId;   //当前会话的ID
     private ChatType chatType = ChatType.CHAT_TYPE_UNKNOW; //是否在聊天界面
@@ -101,7 +102,7 @@ public class TcpManager {
         client.init(config);
         client.setListener(listener);
         rxManager = new RxManager();
-        LogUtils.d("init.ip:"+ip);
+        LogUtils.d("init.ip:" + ip);
     }
 
     private AimMessageListener listener = new AimMessageListener() {
@@ -139,8 +140,7 @@ public class TcpManager {
                             updateContacts(friendStrBean.getData());
                         }
                         loopSendHeart();
-                        //获取离线消息
-//                        long lastTime = SPUtils.getLong(getKeyToLastTime());
+                        //获取离线消息isVideoCall
                         LogUtils.d("lastMsgTime:" + lastMsgTime);
                         sendOffLineMessage(lastMsgTime);
                         break;
@@ -151,15 +151,24 @@ public class TcpManager {
                         break;
                     case WHAT_CHAT_CMD:
                         ChatBody msgBean = JsonKit.toBean(data, ChatBody.class);
-                        doChat(command, msgBean, true);
+                        if (msgBean.getMsgType() == 6) {
+                            //受到消息
+                            if (VideoCallManager.get().call(msgBean)) {
+                                doChat(command, msgBean, true);
+                            }
+                        } else {
+                            doChat(command, msgBean, true);
+                        }
                         break;
-                        default:
+                    default:
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     };
+
+
     private int MSG_NOTIFY_ID = 0x5556;
 
     private void showNotify(ChatBody body, boolean isGroup, int targetId, String nick, String avatar) {
@@ -367,11 +376,25 @@ public class TcpManager {
         return client.isConnect();
     }
 
-    public void sendMsg(final String to, final String groupId, final int chatType, final int msgType,
+    public static String randomUUID() {
+        return UUID.randomUUID().toString();
+    }
+
+    /**
+     * @return
+     * @author wchao
+     */
+    public String newMsgId() {
+        return randomUUID().replace("-", "");
+    }
+
+    public String sendMsg(final String to, final String groupId, final int chatType, final int msgType,
                         final String content, final String url, String localPath, int duration) {
-        if (!isConnect()) return;
+        if (!isConnect()) return null;
+        final String msgId = newMsgId();
         new Thread(() -> {
             ChatBody chat = new ChatBody();
+            chat.setId(msgId);
             chat.setFrom(userId);
             chat.setTo(to);
             chat.setMsgType(msgType);
@@ -393,11 +416,39 @@ public class TcpManager {
             client.send(p);
             if (chatType == 2) {
                 doChat(Command.COMMAND_CHAT_REQ.getNumber(), chat, false);
+                if (chat.getMsgType()==6){
+                    VideoCallManager.get().setCurrentChatBody(chat);
+                }
             }
         }).start();
-
+        return msgId;
     }
 
+
+    public void sendVideoCallStatus(ChatBody chatBody,boolean isCalled, String status, int duration) {
+        if (!isConnect()) return;
+
+        new Thread(() -> {
+            LogUtils.d("chatBody:"+chatBody + " status:"+status);
+            ChatBody sendChat = new ChatBody();
+            sendChat.setId(chatBody.getId());
+            sendChat.setLocalPath(status);
+            sendChat.setChatType(2);
+            sendChat.setMsgType(6);
+            sendChat.setDuration(duration);
+            sendChat.setSessionId(chatBody.getSessionId());
+            sendChat.setFrom(isCalled?chatBody.getFrom():chatBody.getTo());
+            sendChat.setTo(isCalled?chatBody.getTo():chatBody.getFrom());
+            TcpPacket p = new TcpPacket(Command.COMMAND_CHAT_REQ, sendChat.toByte());
+            client.send(p);
+
+            chatBody.setDuration(duration);
+            chatBody.setLocalPath(status);
+            chatBody.setContent(VideoCallManager.getMsg(chatBody,true));
+            DbCore.getDaoMaster().newSession().getChatBodyDao().update(chatBody);
+            RxManagerUtil.getInstance().post("updateCall",chatBody);
+        }).start();
+    }
 
     public boolean sendPrivateMsg(int msgType, String content, String url, String localPath) {
         if (!isConnect()) return false;
@@ -497,9 +548,8 @@ public class TcpManager {
                 return isSelf ? ChatItem.ITEM_TYPE_IMG_FROM : ChatItem.ITEM_TYPE_IMG_TO;
             case 2:
                 return isSelf ? ChatItem.ITEM_TYPE_VOICE_FROM : ChatItem.ITEM_TYPE_VOICE_TO;
-//            case 3:
-//
-//                return isSelf ? ChatItem.ITEM_TYPE_VIDEO_FROM : ChatItem.ITEM_TYPE_VIDEO_TO;
+            case 6:
+                return isSelf ? ChatItem.ITEM_TYPE_VIDEO_CALL_FROM : ChatItem.ITEM_TYPE_VIDEO_CALL_TO;
         }
         return 555;
     }

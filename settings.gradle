@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':component_web_client'
 include  ':component_base',  ':component_data',  ':component_pay',  ':component_im', ':component_album'
 //include 'module_shop_cart','module_shop_mall'
 include ':module_im',':module_user_center'

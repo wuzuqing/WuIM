@@ -10,4 +10,5 @@ object RouterCenter {
     fun navigation(path: String) {
         ARouter.getInstance().build(path).navigation()
     }
+
 }

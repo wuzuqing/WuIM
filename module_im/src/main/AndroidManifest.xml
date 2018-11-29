@@ -23,7 +23,27 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             />
+        <activity
+            android:name=".activity.AudioCallActivity"
+            android:screenOrientation="portrait"
+            />
+  <!--      <activity
+            android:name=".activity.VideoCallActivity"
+            android:screenOrientation="portrait"
+            />-->
+        <activity
+            android:name=".activity.RtcActivity"
+            android:screenOrientation="fullUser"
+            android:configChanges="orientation|screenSize">
 
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                    android:host="120.79.16.93" />
+            </intent-filter>
+        </activity>
         <service android:name=".service.TcpService" />
     </application>
 </manifest>

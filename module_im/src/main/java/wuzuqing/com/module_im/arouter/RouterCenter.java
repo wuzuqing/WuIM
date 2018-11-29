@@ -26,4 +26,10 @@ public class RouterCenter {
         ARouter.getInstance().build(RouterURLS.IM_GROUP_LIST).navigation();
     }
 
+    public static void toVideoCall(boolean called){
+        ARouter.getInstance().build(RouterURLS.IM_VIDEO_CALL)
+                .withBoolean("called",called)
+                .navigation();
+    }
+
 }

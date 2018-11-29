@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/component_data/component_data.iml" filepath="$PROJECT_DIR$/component_data/component_data.iml" />
       <module fileurl="file://$PROJECT_DIR$/component_im/component_im.iml" filepath="$PROJECT_DIR$/component_im/component_im.iml" />
       <module fileurl="file://$PROJECT_DIR$/component_pay/component_pay.iml" filepath="$PROJECT_DIR$/component_pay/component_pay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component_web_client/component_web_client.iml" filepath="$PROJECT_DIR$/component_web_client/component_web_client.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseLib/flowlayout-lib/flowlayout-lib.iml" filepath="$PROJECT_DIR$/baseLib/flowlayout-lib/flowlayout-lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseLib/jcameraview/jcameraview.iml" filepath="$PROJECT_DIR$/baseLib/jcameraview/jcameraview.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseLib/kprogresshud/kprogresshud.iml" filepath="$PROJECT_DIR$/baseLib/kprogresshud/kprogresshud.iml" />

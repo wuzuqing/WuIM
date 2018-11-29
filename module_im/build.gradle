@@ -80,6 +80,7 @@ dependencies {
     implementation project(':component_data')
     implementation project(':component_im')
     implementation project(':component_album')
+    implementation project(':component_web_client')
     implementation project(':baseLib:jcameraview')
     implementation 'com.yinglan.alphatabs:library:1.0.5'
 

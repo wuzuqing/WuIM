@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.wuzuqing.component_base.util.FileUtils
 import com.wuzuqing.component_base.util.ImageLoadUtils
+import com.wuzuqing.component_base.util.TimeUtils
 import com.wuzuqing.component_data.bean.UserInfoBean
 import com.wuzuqing.component_data.cache.GlobalVariable
 import com.wuzuqing.component_data.constant.BaseHost
@@ -29,6 +30,8 @@ class ChatAdapter : BaseMultiItemQuickAdapter<ChatBody, BaseViewHolder> {
 
     constructor(flag: Boolean) : super(ArrayList<ChatBody>()) {
         addItemType(ChatItem.ITEM_TYPE_TEXT_FROM, R.layout.im_item_chat_text_from)
+        addItemType(ChatItem.ITEM_TYPE_VIDEO_CALL_FROM, R.layout.im_item_chat_text_from)
+        addItemType(ChatItem.ITEM_TYPE_VIDEO_CALL_TO, R.layout.im_item_chat_text_to)
         addItemType(ChatItem.ITEM_TYPE_TEXT_TO, R.layout.im_item_chat_text_to)
         addItemType(ChatItem.ITEM_TYPE_IMG_FROM, R.layout.im_item_chat_img_from)
         addItemType(ChatItem.ITEM_TYPE_IMG_TO, R.layout.im_item_chat_img_to)
@@ -76,6 +79,9 @@ class ChatAdapter : BaseMultiItemQuickAdapter<ChatBody, BaseViewHolder> {
                 }
                 iv.setDuration((item.duration*1000).toLong())
                 helper.addOnClickListener(R.id.im_item_chat_img)
+            }
+            6->{
+                helper.setText(R.id.im_item_chat_content,item.content)
             }
             2 -> {
                 val ivVoice = helper.getView<ImageView>(R.id.im_item_chat_voice)

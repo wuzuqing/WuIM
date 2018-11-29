@@ -215,7 +215,6 @@ class ChatPanelHelper(private val activity: FragmentActivity, private val bottom
     }
 
     private fun keyBoardHide() {
-        LogUtils.d("keyBoardHide:$inputState")
         if (inputState == InputPanelState.INPUT) {
             inputState = InputPanelState.NORMAL
             etContent.clearFocus()

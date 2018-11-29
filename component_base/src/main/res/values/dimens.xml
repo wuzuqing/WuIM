@@ -9,6 +9,6 @@
     <integer name="bga_sbl_anim_duration">300</integer>
     <!-- dp and sp values, must be defind in this file! -->
 
-    <dimen name="title_bar_height">48dp</dimen>
+    <dimen name="title_bar_height">42dp</dimen>
 
 </resources>

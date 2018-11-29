@@ -22,11 +22,11 @@ import org.greenrobot.greendao.annotation.Transient;
 public class ChatBody extends Message implements MultiItemEntity {
 
     @Id
-    private Long _ID;
+    private String id;
     private Long createTime;
     private String from;//来自channel id;
     private String to;//目标channel id;
-    private Integer msgType;//消息类型;(如：0:text、1:image、2:voice、3:vedio、4:music、5:news)
+    private Integer msgType;//消息类型;(如：0:text、1:image、2:voice、3:vedio、4:music、5:news,6.videocall)
     private Integer chatType;//聊天类型;(如公聊、私聊)
     private String content;//消息内容;
     @Property(nameInDb = "group_id")
@@ -39,12 +39,12 @@ public class ChatBody extends Message implements MultiItemEntity {
     private int duration;
     @Transient
     private int itemType = -1;
-    @Generated(hash = 992590797)
-    public ChatBody(Long _ID, Long createTime, String from, String to,
-                    Integer msgType, Integer chatType, String content, String group_id,
-                    String sessionId, Boolean isRead, Boolean isListen, String url,
-                    String localPath, int duration) {
-        this._ID = _ID;
+
+    @Generated(hash = 728252163)
+    public ChatBody(String id, Long createTime, String from, String to, Integer msgType,
+                    Integer chatType, String content, String group_id, String sessionId, Boolean isRead,
+                    Boolean isListen, String url, String localPath, int duration) {
+        this.id = id;
         this.createTime = createTime;
         this.from = from;
         this.to = to;
@@ -70,21 +70,14 @@ public class ChatBody extends Message implements MultiItemEntity {
 
     @Override
     public int getItemType() {
-        return itemType == -1?
-                TcpManager.get().getItemType(this):itemType;
+        if (itemType == -1) {
+            itemType = TcpManager.get().getItemType(this);
+        }
+        return itemType;
     }
 
     public void setItemType(int itemType) {
         this.itemType = itemType;
-    }
-
-    public Long get_ID() {
-        return this._ID;
-    }
-
-
-    public void set_ID(Long _ID) {
-        this._ID = _ID;
     }
 
 
@@ -171,7 +164,7 @@ public class ChatBody extends Message implements MultiItemEntity {
     @Override
     public String toString() {
         return "ChatBody{" +
-                "_ID=" + _ID +
+                "_ID=" + id +
                 ", createTime=" + createTime +
                 ", from='" + from + '\'' +
                 ", to='" + to + '\'' +
@@ -220,6 +213,14 @@ public class ChatBody extends Message implements MultiItemEntity {
 
     public void setIsListen(Boolean isListen) {
         this.isListen = isListen;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 }
