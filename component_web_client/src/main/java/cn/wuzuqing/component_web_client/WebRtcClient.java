@@ -300,6 +300,7 @@ public class WebRtcClient {
         client.on("message", messageHandler.onMessage);
         client.connect();
 
+        iceServers.add(new PeerConnection.IceServer("stun:120.79.16.93:3478"));
         iceServers.add(new PeerConnection.IceServer("stun:23.21.150.121"));
         iceServers.add(new PeerConnection.IceServer("stun:stun.l.google.com:19302"));
 
